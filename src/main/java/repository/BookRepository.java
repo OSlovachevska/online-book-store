@@ -1,10 +1,10 @@
 package repository;
 
+import java.util.List;
 import model.Book;
 
-import java.util.List;
-
 public interface BookRepository {
-    Book save (Book book);
+    Book save(Book book);
+
     List<Book> findAll();
 }
