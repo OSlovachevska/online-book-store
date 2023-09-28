@@ -1,46 +1,28 @@
 package service;
 
 import java.util.List;
-
-import dto.CreateBookRequestDto;
-import dto.BookDto;
-import exception.EntityNotFoundException;
-import lombok.NoArgsConstructor;
-import mapper.BookMapper;
 import model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.BookRepository;
 
-@NoArgsConstructor
 @Service
 public class BookServiceImpl implements BookService {
     private BookRepository bookRepository;
-    private BookMapper bookMapper;
 
-  /*  @Autowired
+    @Autowired
     public BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
-    }*/
-
-    @Override
-    public BookDto save(CreateBookRequestDto requestDto) {
-        Book book = bookMapper.toModel(requestDto);
-        Book savedBook = bookRepository.save(book);
-        return bookMapper.toDto(savedBook);
     }
 
     @Override
-    public List<BookDto> findAll() {
-        return bookRepository.findAll().stream().
-                map(bookMapper::toDto)
-                .toList();
+    public Book save(Book book) {
+        return bookRepository.save(book);
     }
 
     @Override
-    public BookDto getById(Long id) {
-        Book book = bookRepository.getByID(id).orElseThrow(() -> new EntityNotFoundException("Can`t get book by id: " + id));
-        return bookMapper.toDto(book);
+    public List<Book> findAll() {
+        return bookRepository.findAll();
     }
 
 }
