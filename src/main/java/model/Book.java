@@ -9,9 +9,12 @@ import java.math.BigDecimal;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Table;
+
 @Data
 @Entity
 @NoArgsConstructor
+@Table(name = "book")
 public class Book {
 
     @Id
