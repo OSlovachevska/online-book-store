@@ -1,9 +1,8 @@
 package repository;
 
+import exception.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
-
-import exception.EntityNotFoundException;
 import model.Book;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,7 +20,6 @@ public class BookRepositoryImpl implements BookRepository {
     public BookRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
 
     @Override
     public Book save(Book book) {

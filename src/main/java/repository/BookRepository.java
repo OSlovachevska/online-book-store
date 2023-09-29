@@ -2,7 +2,6 @@ package repository;
 
 import java.util.List;
 import java.util.Optional;
-
 import model.Book;
 
 public interface BookRepository {

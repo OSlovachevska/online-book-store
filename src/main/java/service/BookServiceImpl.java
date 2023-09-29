@@ -1,10 +1,9 @@
 package service;
 
-import java.util.List;
-
-import dto.CreateBookRequestDto;
 import dto.BookDto;
+import dto.CreateBookRequestDto;
 import exception.EntityNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mapper.BookMapper;
 import model.Book;
@@ -32,14 +31,15 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDto> findAll() {
-        return bookRepository.findAll().stream().
-                map(bookMapper::toDto)
+        return bookRepository.findAll().stream()
+                .map(bookMapper::toDto)
                 .toList();
     }
 
     @Override
     public BookDto getById(Long id) {
-        Book book = bookRepository.getByID(id).orElseThrow(() -> new EntityNotFoundException("Can`t get book by id: " + id));
+        Book book = bookRepository.getByID(id).orElseThrow(()
+                -> new EntityNotFoundException("Can`t get book by id: " + id));
         return bookMapper.toDto(book);
     }
 
