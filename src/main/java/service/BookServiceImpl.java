@@ -41,7 +41,7 @@ public class BookServiceImpl implements BookService {
         return bookRepository.getById(id)
                 .map(bookMapper::toDto)
                 .orElseThrow(()
-                ->  new EntityNotFoundException("Can`t get book by id: " + id));
+                        -> new EntityNotFoundException("Can`t get book by id: " + id));
     }
 
 }
