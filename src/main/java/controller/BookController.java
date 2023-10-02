@@ -14,7 +14,7 @@ import service.BookService;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/book")
+@RequestMapping(value = "books")
 public class BookController {
     private final BookService bookService;
 
@@ -23,7 +23,7 @@ public class BookController {
         return bookService.findAll();
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("{id}")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.getById(id);
     }
