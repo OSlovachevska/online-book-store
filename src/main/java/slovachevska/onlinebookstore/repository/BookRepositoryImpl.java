@@ -1,9 +1,9 @@
-package repository;
+package slovachevska.onlinebookstore.repository;
 
-import exception.EntityNotFoundException;
+import slovachevska.onlinebookstore.exception.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
-import model.Book;
+import slovachevska.onlinebookstore.model.Book;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

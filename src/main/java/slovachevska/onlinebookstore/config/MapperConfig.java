@@ -1,4 +1,4 @@
-package config;
+package slovachevska.onlinebookstore.config;
 
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.NullValueCheckStrategy;

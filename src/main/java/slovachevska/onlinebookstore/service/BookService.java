@@ -1,7 +1,7 @@
-package service;
+package slovachevska.onlinebookstore.service;
 
-import dto.BookDto;
-import dto.CreateBookRequestDto;
+import slovachevska.onlinebookstore.dto.BookDto;
+import slovachevska.onlinebookstore.dto.CreateBookRequestDto;
 import java.util.List;
 
 public interface BookService {

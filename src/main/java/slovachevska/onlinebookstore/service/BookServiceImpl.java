@@ -1,26 +1,21 @@
-package service;
+package slovachevska.onlinebookstore.service;
 
-import dto.BookDto;
-import dto.CreateBookRequestDto;
-import exception.EntityNotFoundException;
+import slovachevska.onlinebookstore.dto.BookDto;
+import slovachevska.onlinebookstore.dto.CreateBookRequestDto;
+import slovachevska.onlinebookstore.exception.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import mapper.BookMapper;
-import model.Book;
+import slovachevska.onlinebookstore.mapper.BookMapper;
+import slovachevska.onlinebookstore.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.BookRepository;
+import slovachevska.onlinebookstore.repository.BookRepository;
 
 @RequiredArgsConstructor
 @Service
 public class BookServiceImpl implements BookService {
-    private BookRepository bookRepository;
-    private BookMapper bookMapper;
-
-    @Autowired
-    public BookServiceImpl(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    private final BookRepository bookRepository;
+    private final BookMapper bookMapper;
 
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {

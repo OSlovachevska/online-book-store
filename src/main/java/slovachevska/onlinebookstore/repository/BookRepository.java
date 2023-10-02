@@ -1,8 +1,8 @@
-package repository;
+package slovachevska.onlinebookstore.repository;
 
 import java.util.List;
 import java.util.Optional;
-import model.Book;
+import slovachevska.onlinebookstore.model.Book;
 
 public interface BookRepository {
     Book save(Book book);

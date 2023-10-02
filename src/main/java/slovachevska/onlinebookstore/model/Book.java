@@ -1,4 +1,4 @@
-package model;
+package slovachevska.onlinebookstore.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "book")
+@Table(name = "books")
 public class Book {
 
     @Id
