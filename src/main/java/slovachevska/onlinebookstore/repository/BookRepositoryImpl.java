@@ -1,13 +1,15 @@
-package repository;
+package slovachevska.onlinebookstore.repository;
 
 import java.util.List;
-import model.Book;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import slovachevska.onlinebookstore.exception.EntityNotFoundException;
+import slovachevska.onlinebookstore.model.Book;
 
 @Repository
 public class BookRepositoryImpl implements BookRepository {
@@ -32,7 +34,7 @@ public class BookRepositoryImpl implements BookRepository {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can`t create a book : " + book, e);
+            throw new EntityNotFoundException("Can`t create a book : " + book);
         } finally {
             if (session != null) {
                 session.close();
@@ -47,7 +49,17 @@ public class BookRepositoryImpl implements BookRepository {
             Query<Book> getAllBooks = session.createQuery("from Book", Book.class);
             return getAllBooks.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can`t find all books", e);
+            throw new EntityNotFoundException("Can`t find all books");
+        }
+    }
+
+    @Override
+    public Optional<Book> getById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            Book book = session.find(Book.class, id);
+            return Optional.ofNullable(book);
+        } catch (Exception e) {
+            throw new EntityNotFoundException("Can`t get book by id:" + id);
         }
     }
 }
