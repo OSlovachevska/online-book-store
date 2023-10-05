@@ -6,5 +6,4 @@ import slovachevska.onlinebookstore.model.Book;
 
 public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificationExecutor<Book> {
 
-
 }
