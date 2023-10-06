@@ -11,7 +11,7 @@ import slovachevska.onlinebookstore.repository.SpecificationProviderManager;
 @Component
 public class BookSpecificationBuilder implements SpecificationBuilder<Book> {
 
-    private SpecificationProviderManager<Book> bookSpecificationProviderManager;
+    private final SpecificationProviderManager<Book> bookSpecificationProviderManager;
 
     @Override
     public Specification<Book> build(BookSearchParameters bookSearchParameters) {

@@ -1,4 +1,4 @@
-package slovachevska.onlinebookstore.repository.book;
+package slovachevska.onlinebookstore.repository.book.spec;
 
 import java.util.Arrays;
 import org.springframework.data.jpa.domain.Specification;
