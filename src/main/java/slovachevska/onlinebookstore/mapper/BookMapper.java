@@ -2,8 +2,8 @@ package slovachevska.onlinebookstore.mapper;
 
 import org.mapstruct.Mapper;
 import slovachevska.onlinebookstore.config.MapperConfig;
-import slovachevska.onlinebookstore.dto.BookDto;
-import slovachevska.onlinebookstore.dto.CreateBookRequestDto;
+import slovachevska.onlinebookstore.dto.book.BookDto;
+import slovachevska.onlinebookstore.dto.book.CreateBookRequestDto;
 import slovachevska.onlinebookstore.model.Book;
 
 @Mapper(config = MapperConfig.class)

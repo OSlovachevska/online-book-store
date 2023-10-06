@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import slovachevska.onlinebookstore.dto.BookDto;
-import slovachevska.onlinebookstore.dto.CreateBookRequestDto;
+import slovachevska.onlinebookstore.dto.book.BookDto;
+import slovachevska.onlinebookstore.dto.book.CreateBookRequestDto;
 import slovachevska.onlinebookstore.repository.book.BookSearchParameters;
-import slovachevska.onlinebookstore.service.BookService;
+import slovachevska.onlinebookstore.service.book.BookService;
 
 @Tag(name = "Book management", description = "Endpoints for managing books")
 @RequiredArgsConstructor
