@@ -1,12 +1,12 @@
-package slovachevska.onlinebookstore.service;
+package slovachevska.onlinebookstore.service.book;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import slovachevska.onlinebookstore.dto.BookDto;
-import slovachevska.onlinebookstore.dto.CreateBookRequestDto;
+import slovachevska.onlinebookstore.dto.book.BookDto;
+import slovachevska.onlinebookstore.dto.book.CreateBookRequestDto;
 import slovachevska.onlinebookstore.exception.EntityNotFoundException;
 import slovachevska.onlinebookstore.mapper.BookMapper;
 import slovachevska.onlinebookstore.model.Book;
