@@ -16,7 +16,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @NoArgsConstructor
 @SQLDelete(sql = "UPDATE books SET is_Deleted = true WHERE id=?")
-@Where(clause = "is_Deleted = true")
+@Where(clause = "is_Deleted = false")
 @Table(name = "books")
 public class Book {
 
@@ -40,6 +40,6 @@ public class Book {
 
     private String coverImage;
 
-    @Column(name = "is_deleted", nullable = false)
+    @Column(name = "is_deleted")
     private boolean isDeleted = false;
 }
