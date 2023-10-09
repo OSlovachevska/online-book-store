@@ -23,9 +23,4 @@ public class Role {
     @Column(nullable = false, unique = true)
     private RoleName name;
 
-    public enum RoleName {
-
-        ROLE_ADMIN,
-        ROLE_USER
-    }
 }
