@@ -8,7 +8,7 @@ import slovachevska.onlinebookstore.dto.user.UserRegistrationRequest;
 import slovachevska.onlinebookstore.dto.user.UserRegistrationResponseDto;
 import slovachevska.onlinebookstore.exception.RegistrationException;
 import slovachevska.onlinebookstore.mapper.UserMapper;
-import slovachevska.onlinebookstore.model.Role;
+import slovachevska.onlinebookstore.model.RoleName;
 import slovachevska.onlinebookstore.model.User;
 import slovachevska.onlinebookstore.repository.UserRepository;
 import slovachevska.onlinebookstore.service.role.RoleService;
@@ -16,6 +16,8 @@ import slovachevska.onlinebookstore.service.role.RoleService;
 @RequiredArgsConstructor
 @Component
 public class UserServiceImpl implements UserService {
+
+    private final String adminEmail = "admin@example.com";
 
     private final UserRepository userRepository;
 
@@ -36,7 +38,10 @@ public class UserServiceImpl implements UserService {
 
         User user = userMapper.toModel(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRoles(Set.of(roleService.findRoleByName(Role.RoleName.ROLE_USER)));
+        user.setRoles(Set.of(roleService.findRoleByName(RoleName.ROLE_USER)));
+        if (request.getEmail().equals(adminEmail)) {
+            user.setRoles(Set.of(roleService.findRoleByName(RoleName.ROLE_ADMIN)));
+        }
         User savedUser = userRepository.save(user);
         return userMapper.toDto(savedUser);
     }

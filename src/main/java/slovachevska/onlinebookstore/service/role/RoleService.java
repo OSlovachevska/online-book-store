@@ -1,12 +1,10 @@
 package slovachevska.onlinebookstore.service.role;
 
-import java.util.List;
 import slovachevska.onlinebookstore.model.Role;
+import slovachevska.onlinebookstore.model.RoleName;
 
 public interface RoleService {
-    Role save(Role role);
 
-    Role findRoleByName(Role.RoleName roleName);
+    Role findRoleByName(RoleName roleName);
 
-    List<Role> findAll();
 }
