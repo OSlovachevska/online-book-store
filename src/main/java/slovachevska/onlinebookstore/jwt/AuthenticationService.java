@@ -4,12 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import slovachevska.onlinebookstore.dto.user.UserLoginRequestDto;
 import slovachevska.onlinebookstore.dto.user.UserLoginResponseDto;
 
 @RequiredArgsConstructor
-@Component
+@Service
 public class AuthenticationService {
 
     private final JwtUtil jwtUtil;
