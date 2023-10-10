@@ -10,7 +10,7 @@ import slovachevska.onlinebookstore.exception.RegistrationException;
 import slovachevska.onlinebookstore.mapper.UserMapper;
 import slovachevska.onlinebookstore.model.RoleName;
 import slovachevska.onlinebookstore.model.User;
-import slovachevska.onlinebookstore.repository.UserRepository;
+import slovachevska.onlinebookstore.repository.user.UserRepository;
 import slovachevska.onlinebookstore.service.role.RoleService;
 
 @RequiredArgsConstructor
