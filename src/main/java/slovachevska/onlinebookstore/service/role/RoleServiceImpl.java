@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import slovachevska.onlinebookstore.model.Role;
 import slovachevska.onlinebookstore.model.RoleName;
-import slovachevska.onlinebookstore.repository.RoleRepository;
+import slovachevska.onlinebookstore.repository.role.RoleRepository;
 
 @RequiredArgsConstructor
 @Service
