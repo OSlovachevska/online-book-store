@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      MYSQLDB_USER: root
+      MYSQLDB_ROOT_PASSWORD: root1234
+      MYSQLDB_DATABASE: book_store_app
+    healthcheck:
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -u${MYSQLDB_USER} -p${MYSQLDB_ROOT_PASSWORD}" ]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+  spring-app:
+        container_name: app
+        env_file: .env
+        build:
+          context: .
+          dockerfile: Dockerfile
+        environment:
+          SPRING_DATASOURCE_URL: jdbc:mysql://database:${MYSQLDB_DOCKER_PORT}/${MYSQLDB_DATABASE}?serverTimezone=CET
+          SPRING_DATASOURCE_USERNAME: ${MYSQLDB_USER}
+          SPRING_DATASOURCE_PASSWORD: ${MYSQLDB_ROOT_PASSWORD}
+          JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+        ports:
+          - "${SPRING_LOCAL_PORT}:${SPRING_DOCKER_PORT}"
+          - "${DEBUG_PORT}:${DEBUG_PORT}"
+        depends_on:
+          - book_store_app
+
