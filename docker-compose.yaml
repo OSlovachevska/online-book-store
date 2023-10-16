@@ -1,35 +1,46 @@
 version: "3.8"
 
 services:
-  db:
+  mysqldb:
     image: mysql
     restart: always
-    ports:
-      - "5433:5432"
+    env_file:
+      - ./.env
     environment:
-      MYSQLDB_USER: root
-      MYSQLDB_ROOT_PASSWORD: root1234
-      MYSQLDB_DATABASE: book_store_app
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+    ports:
+      - "$MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT"
+    networks:
+      - my_network
     healthcheck:
-      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -u${MYSQLDB_USER} -p${MYSQLDB_ROOT_PASSWORD}" ]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u$MYSQL_USER -p$MYSQL_ROOT_PASSWORD"]
       interval: 30s
       timeout: 30s
       retries: 3
 
-  spring-app:
-        container_name: app
-        env_file: .env
-        build:
-          context: .
-          dockerfile: Dockerfile
-        environment:
-          SPRING_DATASOURCE_URL: jdbc:mysql://database:${MYSQLDB_DOCKER_PORT}/${MYSQLDB_DATABASE}?serverTimezone=CET
-          SPRING_DATASOURCE_USERNAME: ${MYSQLDB_USER}
-          SPRING_DATASOURCE_PASSWORD: ${MYSQLDB_ROOT_PASSWORD}
-          JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
-        ports:
-          - "${SPRING_LOCAL_PORT}:${SPRING_DOCKER_PORT}"
-          - "${DEBUG_PORT}:${DEBUG_PORT}"
-        depends_on:
-          - book_store_app
+  app:
+    depends_on:
+      - mysqldb
+    image: book.service
+    restart: no
+    build: .
+    env_file:
+      - ./.env
+    ports:
+      - "$SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT"
+      - "$DEBUG_PORT:$DEBUG_PORT"
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url": "jdbc:mysql://mysqldb:$MYSQLDB_LOCAL_PORT/$MYSQL_DATABASE",
+        "spring.datasource.username": "root",
+        "spring.datasource.password": "$MYSQL_ROOT_PASSWORD"
+      }'
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+    networks:
+      - my_network
 
+networks:
+  my_network:
+    driver: bridge
