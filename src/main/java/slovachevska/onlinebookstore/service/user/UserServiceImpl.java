@@ -38,9 +38,9 @@ public class UserServiceImpl implements UserService {
 
         User user = userMapper.toModel(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRoles(Set.of(roleService.findRoleByName(RoleName.ROLE_USER)));
+        user.setRoles(Set.of(roleService.findRoleByName(RoleName.USER)));
         if (request.getEmail().equals(adminEmail)) {
-            user.setRoles(Set.of(roleService.findRoleByName(RoleName.ROLE_ADMIN)));
+            user.setRoles(Set.of(roleService.findRoleByName(RoleName.ADMIN)));
         }
         User savedUser = userRepository.save(user);
         return userMapper.toDto(savedUser);
