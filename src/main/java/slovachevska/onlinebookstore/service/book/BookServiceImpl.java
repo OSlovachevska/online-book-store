@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import slovachevska.onlinebookstore.dto.book.BookDto;
 import slovachevska.onlinebookstore.dto.book.BookDtoWithoutCategoryIds;
+import slovachevska.onlinebookstore.dto.book.BookResponseDto;
 import slovachevska.onlinebookstore.dto.book.CreateBookRequestDto;
 import slovachevska.onlinebookstore.exception.EntityNotFoundException;
 import slovachevska.onlinebookstore.mapper.BookMapper;
@@ -23,14 +23,14 @@ public class BookServiceImpl implements BookService {
     private final BookSpecificationBuilder bookSpecificationBuilder;
 
     @Override
-    public BookDto save(CreateBookRequestDto requestDto) {
+    public BookResponseDto save(CreateBookRequestDto requestDto) {
         Book book = bookMapper.toModel(requestDto);
         Book savedBook = bookRepository.save(book);
         return bookMapper.toDto(savedBook);
     }
 
     @Override
-    public List<BookDto> findAll(Pageable pageable) {
+    public List<BookResponseDto> findAll(Pageable pageable) {
         return bookRepository.findAll(pageable).stream()
                 .map(bookMapper::toDto)
                 .toList();
@@ -45,7 +45,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDto getById(Long id) {
+    public BookResponseDto getById(Long id) {
         return bookRepository.findById(id)
                 .map(bookMapper::toDto)
                 .orElseThrow(()
@@ -59,7 +59,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> search(BookSearchParameters bookSearchParameters) {
+    public List<BookResponseDto> search(BookSearchParameters bookSearchParameters) {
         Specification<Book> bookSpecification = bookSpecificationBuilder
                 .build(bookSearchParameters);
         return bookRepository.findAll().stream()
