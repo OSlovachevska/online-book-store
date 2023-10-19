@@ -10,10 +10,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
 @Entity
-@Table(name = "cartItems")
+@Accessors(chain = true)
+@Table(name = "cart_items")
 public class CartItem {
 
     @Id

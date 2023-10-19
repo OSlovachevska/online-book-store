@@ -14,14 +14,18 @@ import java.util.HashSet;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Getter
 @Setter
 @Entity
 @SQLDelete(sql = "UPDATE cart SET is_deleted = true WHERE id = ?")
+@RequestMapping("/cart")
 @Where(clause = "is_deleted=false")
+@Accessors(chain = true)
 @Table(name = "shopping_carts")
 public class ShoppingCart {
     @Id
