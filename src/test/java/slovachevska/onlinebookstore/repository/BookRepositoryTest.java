@@ -1,4 +1,4 @@
-package slovachevska.onlinebookstore.repository.book;
+package slovachevska.onlinebookstore.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.jdbc.Sql;
 import slovachevska.onlinebookstore.model.Book;
+import slovachevska.onlinebookstore.repository.book.BookRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

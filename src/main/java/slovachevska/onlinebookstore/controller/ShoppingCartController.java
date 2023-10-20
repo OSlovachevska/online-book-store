@@ -4,8 +4,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,8 +35,8 @@ public class ShoppingCartController {
     public ShoppingCartResponseDto addBookToShoppingCart(
             Authentication authentication,
             @RequestBody @Valid CartItemCreateRequestDto requestDto) {
-        cartItemService.create(authentication.name(), requestDto);
-        return shoppingCartService.getShoppingCartByUserEmail(authentication.name());
+        cartItemService.create(authentication.getName(), requestDto);
+        return shoppingCartService.getShoppingCartByUserEmail(authentication.getName());
     }
 
     @PutMapping("/cart-items/{cartItemId}")
@@ -46,7 +46,7 @@ public class ShoppingCartController {
             @RequestBody @Valid CartItemUpdateRequestDto requestDto,
             Authentication authentication) {
         cartItemService.update(cartItemId, requestDto);
-        return shoppingCartService.getShoppingCartByUserEmail(authentication.name());
+        return shoppingCartService.getShoppingCartByUserEmail(authentication.getName());
     }
 
     @DeleteMapping("/cart-items/{cartItemId}")
@@ -54,7 +54,7 @@ public class ShoppingCartController {
     public ShoppingCartResponseDto deleteCartItem(@PathVariable Long cartItemId,
                                                   Authentication authentication) {
         cartItemService.deleteById(cartItemId);
-        return shoppingCartService.getShoppingCartByUserEmail(authentication.name());
+        return shoppingCartService.getShoppingCartByUserEmail(authentication.getName());
     }
 
 }
