@@ -23,7 +23,7 @@ public class AuthController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    UserRegistrationResponseDto register(@RequestBody @Valid UserRegistrationRequest request)
+    UserRegistrationResponseDto registerUser(@RequestBody @Valid UserRegistrationRequest request)
             throws RegistrationException {
         return userService.register(request);
     }
@@ -33,3 +33,4 @@ public class AuthController {
         return authenticationService.authenticate(requestDto);
     }
 }
+
