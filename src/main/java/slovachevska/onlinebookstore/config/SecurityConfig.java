@@ -1,7 +1,5 @@
 package slovachevska.onlinebookstore.config;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,7 +45,7 @@ public class SecurityConfig {
                                 .anyRequest()
                                 .authenticated()
                 )
-             //   .httpBasic(withDefaults())
+                //   .httpBasic(withDefaults())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter,
