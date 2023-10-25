@@ -1,5 +1,6 @@
 package slovachevska.onlinebookstore.dto.user;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -12,8 +13,7 @@ import slovachevska.onlinebookstore.validation.FieldsValueMatch;
 @Data
 public class UserRegistrationRequest {
 
-    @NotBlank
-    @Size(min = 4, max = 50)
+    @Email
     private String email;
 
     @NotBlank
@@ -30,5 +30,6 @@ public class UserRegistrationRequest {
     @NotBlank
     private String lastName;
 
+    @NotBlank
     private String shippingAddress;
 }
