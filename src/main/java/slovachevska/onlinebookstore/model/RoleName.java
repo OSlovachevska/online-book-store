@@ -2,7 +2,7 @@ package slovachevska.onlinebookstore.model;
 
 public enum RoleName {
 
-    USER,
+    ROLE_USER,
 
-    ADMIN
+    ROLE_ADMIN
 }

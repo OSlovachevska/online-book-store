@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Set;
 import lombok.Data;
@@ -44,6 +45,7 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String lastName;
 
+    @NotBlank
     private String shippingAddress;
 
     @Column(name = "is_deleted", nullable = false)
