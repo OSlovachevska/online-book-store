@@ -16,20 +16,21 @@ import slovachevska.onlinebookstore.service.user.UserService;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/auth")
+@RequestMapping(value = "/auth")
 public class AuthController {
 
     private final UserService userService;
     private final AuthenticationService authenticationService;
 
-    @PostMapping("/register")
-    UserRegistrationResponseDto register(@RequestBody @Valid UserRegistrationRequest request)
+    @PostMapping(value = "/register")
+    UserRegistrationResponseDto registerUser(@RequestBody @Valid UserRegistrationRequest request)
             throws RegistrationException {
         return userService.register(request);
     }
 
-    @PostMapping("/login")
+    @PostMapping(value = "/login")
     UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto requestDto) {
         return authenticationService.authenticate(requestDto);
     }
 }
+

@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.Length;
 @Data
 public class UserLoginRequestDto {
 
-    @NotBlank
     @Email
     private String email;
 
